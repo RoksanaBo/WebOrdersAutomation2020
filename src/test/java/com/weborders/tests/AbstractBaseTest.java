@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeTest;
 import java.io.IOException;
 
 
+
 public abstract class AbstractBaseTest {
 
     protected WebDriver driver = Driver.getDriver();
@@ -44,11 +45,14 @@ public abstract class AbstractBaseTest {
         extentReports.flush();
     }
 
+
     @BeforeMethod
     public void setup() {
+        driver = Driver.getDriver();
         driver.get(ConfigurationReader.getProperty("url"));
         driver.manage().window().maximize();
     }
+
 
     @AfterMethod
     public void teardown(ITestResult testResult) {
