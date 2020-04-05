@@ -1,16 +1,18 @@
 package com.weborders.utilities;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 import java.io.FileInputStream;
 import java.util.Properties;
 
 public class ConfigurationReader {
     private static Properties configFile;
 
-
     static {
         try {
             //location of properties file
-            String path = System.getProperty("user.dir") + "/configuration.properties";
+            String path = System.getProperty("user.dir")+"/configuration.properties";
             //get that file as a stream
             FileInputStream input = new FileInputStream(path);
             //create object of Properties class
@@ -26,15 +28,12 @@ public class ConfigurationReader {
 
     }
 
-
     /**
      * This method returns property value from configuration.properties file
-     *
      * @param keyName property name
      * @return property value
      */
     public static String getProperty(String keyName) {
         return configFile.getProperty(keyName);
     }
-
 }

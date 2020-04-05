@@ -10,47 +10,37 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class BrowserUtilities {
-
+    /**
+     * Pause test for some time
+     *
+     * @param seconds
+     */
     public static void wait(int seconds) {
-
-        // to slow down our program
-
         try {
             Thread.sleep(1000 * seconds);
-
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
-
-
     /**
-     *
      * @param elements represents collection of WebElements
-     * @return collection of Strings
+     * @return collection of strings
      */
-
-    public static List<String> getTextFromWebElements(List<WebElement> elements){
-
+    public static List<String> getTextFromWebElements(List<WebElement> elements) {
         List<String> textValues = new ArrayList<>();
-        for(WebElement element:elements){
-            if(!element.getText().isEmpty()) {
+        for (WebElement element : elements) {
+            if (!element.getText().isEmpty()) {
                 textValues.add(element.getText());
             }
         }
         return textValues;
     }
-
-
 
     /**
      * waits for backgrounds processes on the browser to complete
@@ -65,16 +55,17 @@ public class BrowserUtilities {
         } catch (Throwable error) {
             error.printStackTrace();
         }
-
     }
 
-
-    public static void clickWithJS(WebElement element){
+    /**
+     * Clicks on an element using JavaScript
+     *
+     * @param element
+     */
+    public static void clickWithJS(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
-
-
 
     /**
      * Scroll to element using JavaScript
@@ -85,15 +76,11 @@ public class BrowserUtilities {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-
-
-
     /**
-     *
      * @param name screenshot name
      * @return path to the screenshot
      */
-    public static String getScreenShot(String name){
+    public static String getScreenshot(String name) {
         //adding date and time to screenshot name, to make screenshot unique
         name = new Date().toString().replace(" ", "_").replace(":", "-") + "_" + name;
         //where we gonna store a screenshot
@@ -122,9 +109,6 @@ public class BrowserUtilities {
             e.printStackTrace();
         }
         return path;
-
     }
-
-
-
 }
+
